@@ -1,0 +1,40 @@
+@keyframes moveBack {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+}
+.background {
+	width: 200%;
+	position:absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    	background: url(images/bg.png) repeat-x;
+  animation: moveBack 10s linear infinite;
+}
+canvas {
+	position: relative;
+	z-index: 2;
+}
+.wrapper {
+	max-width: 360px;
+	overflow-x: hidden;
+	position: relative;
+	display: inline-block;
+}
+.start {
+	z-index: 3;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	padding: 5px;
+	border: 2px solid white;
+	color: white;
+	text-transform: uppercase;
+}
+.start.is-visble {
+	display: block;
+}
+.start.is-hide {
+	display: none;
+}
