@@ -72,7 +72,7 @@ function anim(timePassed) {
 function Draw() {
 	game = true;
 	reload.classList.add('is-hide');
-	ctx.drawImage(bg, 0, 0, canvas.width, canvas.height);
+	ctx.drawImage(bg, 0, 0, canvas.height, canvas.width);
 	for(let i = 0; i < pipe.length; i++) {
 		ctx.drawImage(pipeUp, pipe[i].x, pipe[i].y);
 		ctx.drawImage(pipeDown, pipe[i].x, pipe[i].y + pipeUp.height + gap);
@@ -111,5 +111,3 @@ function Draw() {
 	  reload.classList.remove('is-hide');
 	}
 }
-console.log(canvas.width)
-console.log(canvas.height)
