@@ -2,6 +2,10 @@
     from { transform: translateX(0); }
     to { transform: translateX(-50%); }
 }
+body {
+	margin: 0;
+	overflow-y: hidden;
+}
 .background {
 	width: 200%;
 	position:absolute;
@@ -9,6 +13,7 @@
     bottom: 0;
     left: 0;
     	background: url(images/bg.png) repeat-x;
+    	background-size: contain;
   animation: moveBack 10s linear infinite;
 }
 canvas {
@@ -16,10 +21,14 @@ canvas {
 	z-index: 2;
 }
 .wrapper {
-	max-width: 360px;
+	width: 100vw;
+	height: 100vh;
+	min-height: 600px;
 	overflow-x: hidden;
+	width: 100%;
 	position: relative;
 	display: inline-block;
+	overflow-y: hidden;
 }
 .start {
 	z-index: 3;
