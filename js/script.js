@@ -2,8 +2,9 @@ var canvas = document.querySelector('#ctx'),
 		ctx = canvas.getContext('2d'),
 		game,
 		reload = document.querySelector('.start'),
-		heightWrapper =  window.screen.availWidth,
-		widthWrapper = window.screen.availHeight,
+		wrapper = document.querySelector('.wrapper'),
+		heightWrapper = wrapper.offsetHeight,
+		widthWrapper = wrapper.offsetWidth,
 
 		bird = new Image(),
 		bg = new Image(),
@@ -35,7 +36,7 @@ var canvas = document.querySelector('#ctx'),
 				x : canvas.width,
 				y : 0,
 			}
-document.addEventListener('keydown', moveUp);
+document.addEventListener('click', moveUp);
 function  startGame() {
 	reload.addEventListener('click', function(){
 	reload.classList.remove('is-hide');
