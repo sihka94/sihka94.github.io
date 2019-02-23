@@ -2,6 +2,9 @@ var canvas = document.querySelector('#ctx'),
 		ctx = canvas.getContext('2d'),
 		game,
 		reload = document.querySelector('.start'),
+		wrapper = document.querySelector('.wrapper'),
+		heightWrapper = wrapper.offsetHeight,
+		widthWrapper = wrapper.offsetWidth,
 
 		bird = new Image(),
 		bg = new Image(),
@@ -21,8 +24,9 @@ var canvas = document.querySelector('#ctx'),
 		pipeUp.src = 'images/up.png';
 		pipeDown.src = 'images/down.png';
 		// score 
-		let score = 0;
-		const gap = 90;
+		let score = 0,
+				check = score;
+		let  gap = 120;
 		let xPos = 10,
 				yPos = 150,
 				gravity = 1.5,
@@ -72,7 +76,7 @@ function anim(timePassed) {
 function Draw() {
 	game = true;
 	reload.classList.add('is-hide');
-	ctx.drawImage(bg, 0, 0, canvas.height, canvas.width);
+	ctx.drawImage(bg, 0, 0, canvas.width, canvas.height);
 	for(let i = 0; i < pipe.length; i++) {
 		ctx.drawImage(pipeUp, pipe[i].x, pipe[i].y);
 		ctx.drawImage(pipeDown, pipe[i].x, pipe[i].y + pipeUp.height + gap);
@@ -93,11 +97,27 @@ function Draw() {
 		if (pipe[i].x == 5) {
 			score_audio.play();
 			score++;
+					//
+		// Condition of score
+		// _________________________________________
+		if (score == 2) {
+			gap = 90;
+		}
+		if (score >= 3) {
+			gap = gap - 5;
+		}
+		// _________________________________________
 		}
 	}
 	if(game) {
 		startGame();
-		ctx.drawImage(fg, 0, canvas.height - fg.height);
+		//
+		// floor of Game
+		// _________________________________________
+		var pattern = ctx.createPattern(fg, 'repeat');
+		ctx.fillStyle = pattern; 
+		ctx.fillRect(0, canvas.height - fg.height - 10, canvas.width, 150);
+		// _________________________________________
 		ctx.drawImage(bird, xPos, yPos);
 		yPos += gravity;
 		ctx.fillStyle = "#000";
@@ -110,4 +130,8 @@ function Draw() {
 	  ctx.fillText("Счёт :" + score, 10, canvas.height - 20);
 	  reload.classList.remove('is-hide');
 	}
+}
+window.onload = function() {
+	canvas.setAttribute('width', widthWrapper);
+	canvas.setAttribute('height', heightWrapper);
 }
